@@ -109,7 +109,7 @@ export const Books = () => {
   }, [addBook, sortPrice, sort, sortbyTime, books]);
 
   return (
-    <Box m={"auto"} mt={10} w={"90%"}>
+    <Box m={"auto"} mt={10} w={{ base: "95%", md: "90%" }}>
       {addBtn && (
         <Heading size={"lg"} textAlign={"left"}>
           Hi, {user.name.toUpperCase()}
@@ -136,11 +136,17 @@ export const Books = () => {
         borderRadius={"20px"}
         border={"0.5px solid"}
       >
-        <Box mb={5} display={"flex"} gap={10} alignItems={"center"}>
+        <Box
+          mb={5}
+          display={"flex"}
+          gap={{ base: 5, md: 10 }}
+          alignItems={"center"}
+          flexWrap={"wrap"}
+        >
           <Select
             placeholder="Filter with Price"
             bg={"#fff"}
-            w={"20%"}
+            w={{ base: "45%", md: "20%" }}
             h={"52px"}
             value={sortPrice}
             onChange={(e) => setPrice(e.target.value)}
@@ -153,7 +159,7 @@ export const Books = () => {
           <Select
             placeholder="sort with Price"
             bg={"#fff"}
-            w={"20%"}
+            w={{ base: "45%", md: "20%" }}
             h={"52px"}
             onChange={(e) => setPriceSort(e.target.value)}
           >

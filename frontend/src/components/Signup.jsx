@@ -56,19 +56,19 @@ export const Signup = () => {
 
   return (
     <Box
-      w={"50%"}
+      w={{ base: "95%", md: "50%" }}
       m={"auto"}
       mt={10}
-      p={10}
+      p={{ base: 3, md: 10 }}
       borderRadius={"20px"}
       boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
     >
       <form action="" onSubmit={handleSubmit}>
         <FormControl
           isRequired
-          w={"70%"}
+          w={{ base: "100%", md: "70%" }}
           m={"auto"}
-          p={"5%"}
+          p={{ base: "3%", md: "5%" }}
           borderRadius={"20px"}
           display={"flex"}
           flexDirection={"column"}
@@ -135,7 +135,7 @@ export const Signup = () => {
         </FormControl>
       </form>
 
-      <Text fontSize={"lg"}>
+      <Text fontSize={{ base: "xs", md: "lg" }}>
         Already have an Account?{" "}
         <Link to={"/login"} style={{ color: "blue", fontWeight: "700" }}>
           Login

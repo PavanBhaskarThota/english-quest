@@ -33,11 +33,16 @@ export const Navbar = () => {
       alignItems={"center"}
       boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
       height={"100px"}
+      gap={2}
     >
-      <Heading size={"xl"} ml={20} cursor={"pointer"}>
+      <Heading
+        size={{ base: "xm", ml: "xl" }}
+        ml={{ base: 2, md: 20 }}
+        cursor={"pointer"}
+      >
         <Link to={"/"}> English Quest</Link>
       </Heading>
-      <Link to={"/books"} style={{ fontSize: "20px", fontWeight: "600" }}>
+      <Link to={"/books"} style={{ fontSize: "16px", fontWeight: "600" }}>
         Books Library
       </Link>
 
@@ -47,12 +52,20 @@ export const Navbar = () => {
         // </Button>
         <Logout handleLogout={handleLogout} props={user} />
       ) : (
-        <Box display={"flex"} gap={10} mr={20}>
+        <Box
+          display={"flex"}
+          gap={{ base: 2, md: 10 }}
+          mr={{ base: 2, md: 20 }}
+        >
           <Link to={"/login"}>
-            <Button>Login</Button>
+            <Button colorScheme="blue" borderRadius={"20px"}>
+              Login
+            </Button>
           </Link>
           <Link to={"/register"}>
-            <Button>SignUp</Button>
+            <Button colorScheme="teal" borderRadius={"20px"}>
+              SignUp
+            </Button>
           </Link>
         </Box>
       )}

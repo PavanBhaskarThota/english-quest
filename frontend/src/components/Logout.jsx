@@ -17,10 +17,10 @@ import React from "react";
 
 export const Logout = ({ props, handleLogout }) => {
   return (
-    <Box mr={"150px"}>
+    <Box mr={{ base: 2, md: "150px" }}>
       <Popover>
         <PopoverTrigger>
-          <Heading colorScheme="blue" size={"lg"} cursor={"pointer"}>
+          <Heading colorScheme="blue" size={{ base: 'xm', md: "lg" }} cursor={"pointer"}>
             Hi, {props.name}
           </Heading>
         </PopoverTrigger>

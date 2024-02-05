@@ -27,12 +27,12 @@ export const Home = () => {
   };
 
   return (
-    <Box>
+    <Box w={{ base: "95%", md: "100%" }} m={"auto"}>
       <VStack spacing={8} align="center" justify="center" h="80vh">
-        <Heading as="h1" fontSize="4xl" mb={4}>
+        <Heading as="h1" fontSize={{ base: "3xl", md: '4xl'} } mb={4}>
           Welcome to the English Quest
         </Heading>
-        <Text fontSize="xl" textAlign="center" mb={8}>
+        <Text fontSize={{ base: "ml", md: 'lg'} } textAlign="center" mb={8}>
           Explore a world of knowledge and adventure through our vast collection
           of books.
         </Text>
@@ -44,7 +44,7 @@ export const Home = () => {
             - {randomQuote.author}
           </Text>
         </Box>
-        <Button colorScheme="teal" size="lg" onClick={handleNav}>
+        <Button colorScheme="blue" size="lg" onClick={handleNav}>
           Browse Books
         </Button>
       </VStack>

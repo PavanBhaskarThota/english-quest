@@ -119,19 +119,19 @@ export const Login = () => {
 
   return (
     <Box
-      w={"50%"}
+      w={{ base: "95%", md: "50%" }}
       m={"auto"}
       mt={10}
-      p={20}
+      p={{ base: 3, md: 20 }}
       borderRadius={"20px"}
       boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
     >
       <form onSubmit={handleSubmit}>
         <FormControl
           isRequired
-          w={"70%"}
+          w={{ base: "100%", md: "70%" }}
           m={"auto"}
-          p={"5%"}
+          p={{ base: "3%", md: "5%" }}
           borderRadius={"20px"}
           display={"flex"}
           flexDirection={"column"}
@@ -166,13 +166,16 @@ export const Login = () => {
             m={"auto"}
             mt={10}
             type="submit"
+            _hover={{
+              backgroundColor: "#073d69",
+            }}
           >
             Login
           </Button>
         </FormControl>
       </form>
 
-      <Text fontSize={"lg"}>
+      <Text fontSize={{ base: "xs", md: "lg" }}>
         Not have an Account?{" "}
         <Link to={"/register"} style={{ color: "blue", fontWeight: "700" }}>
           Signup
