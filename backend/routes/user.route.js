@@ -20,7 +20,13 @@ userRouter.post("/register", async (req, res) => {
       res.status(200).send({ msg: "new user has add", user: user });
     });
   } catch (error) {
-    res.status(400).send({ err: error });
+    
+    if (error.name === "ValidationError") {
+      return res.status(400).send({ msg: "Validation Error", error });
+    }
+    return res.status(400).send({ msg: "Internal Server Error", error });
+
+    // res.status(400).send({ err: error });
   }
 });
 
