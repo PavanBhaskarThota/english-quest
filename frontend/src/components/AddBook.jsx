@@ -58,7 +58,7 @@ export const AddBook = ({ handleAddBook }) => {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent mt={"auto"} mb={"auto"} p={5}>
+        <ModalContent mt={"auto"} mb={"auto"} p={{ base: 0, md: 5} } w={{base:'93%'}}>
           <ModalHeader>Create your New Book</ModalHeader>
           <ModalCloseButton />
           <form action="" onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ export const AddBook = ({ handleAddBook }) => {
                 isRequired
                 display={"flex"}
                 flexDirection={"column"}
-                gap={3}
+                gap={{base:2, md:3}}
               >
                 <FormLabel>Book Title</FormLabel>
                 <Input
@@ -100,9 +100,9 @@ export const AddBook = ({ handleAddBook }) => {
 
             <ModalFooter>
               <Button colorScheme="blue" mr={3} type="submit">
-                Add Book
+                Creat Book
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={onClose} colorScheme="red">Cancel</Button>
             </ModalFooter>
           </form>
         </ModalContent>
