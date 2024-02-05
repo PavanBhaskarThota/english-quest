@@ -130,7 +130,7 @@ export const Books = () => {
 
       {addBtn && <AddBook handleAddBook={handleAddBook} />}
       <Heading size={"lg"} mt={10}>
-        Books in Table Formate
+        Books in Table Format
       </Heading>
 
       <Box
@@ -202,7 +202,8 @@ export const Books = () => {
                 <Th>Title</Th>
                 <Th>Description</Th>
                 <Th>Price</Th>
-                <Th></Th>
+                <Th>Created By</Th>
+                <Th>Created At</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -213,7 +214,7 @@ export const Books = () => {
                       <BookCard
                         key={i}
                         props={el}
-                        deleteBtn={true}
+                        deleteBtn={addBtn}
                         index={i}
                         handleDelete={handleDelete}
                       />

@@ -11,14 +11,15 @@ import {
 
 export const userRegisterfun = (user) => (dispatch) => {
   dispatch({ type: SIGNUP_REQUEST });
-  axios
-    .post(`https://english-quest-go3m.onrender.com/register`, user)
+  return axios
+    .post(`http://localhost:7000/register`, user)
     .then((res) => {
-      console.log(res);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+      return res;
     })
     .catch((err) => {
       dispatch({ type: SIGNUP_FAILURE, payload: err });
+      return err;
     });
 };
 
@@ -27,7 +28,6 @@ export const userLoginfun = (user) => (dispatch) => {
   return axios
     .post(`https://english-quest-go3m.onrender.com/login`, user)
     .then((res) => {
-      console.log(res.data);
       if (res.data.msg == "Login Successfull") {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem("user", JSON.stringify(res.data.user));

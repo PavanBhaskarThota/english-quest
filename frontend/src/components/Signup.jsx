@@ -42,10 +42,17 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    dispatch(userRegisterfun(user));
+
+    dispatch(userRegisterfun(user))
+      .then((res) => {
+        console.log(res);
+        const status = res.data.msg;
+      })
+      .catch((err) => {
+        console.log(err);
+        // const status = err.data.name;
+      });
   };
-  console.log(userData, status, isLoading, isError);
 
   return (
     <Box
@@ -71,7 +78,7 @@ export const Signup = () => {
         >
           <FormLabel>Name</FormLabel>
           <Input
-            placeholder="Full Name"
+            placeholder="full name"
             type="name"
             value={user.name}
             name="name"
