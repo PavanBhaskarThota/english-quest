@@ -32,8 +32,6 @@ export const Books = () => {
   const [addBook, setAddbook] = useState(false);
   const toast = useToast();
 
-  console.log(addBtn);
-
   const [sortbyTime, setSortByTime] = useState("");
 
   //sort
@@ -59,7 +57,6 @@ export const Books = () => {
 
   const handleDelete = (id) => {
     dispatch(deleteBookfun(id)).then((res) => {
-      console.log(res);
       {
         toast({
           title: "Delete Successfull",
@@ -73,28 +70,30 @@ export const Books = () => {
 
     setAddbook(!addBook);
   };
-
   let bookList = [...books];
- 
-    bookList = bookList
-      .filter((el) => {
-        if (el.price < sortPrice || !sortPrice) {
-          return el;
-        }
-      })
-      .sort((a, b) => {
-        if (sort == "low") {
-          return a.price - b.price;
-        } else if (sort == "high") {
-          return b.price - a.price;
-        } else {
-          return 0;
-        }
-      });
-  
+  const handleChange = () => {
+    bookList = [...books];
+  };
+
+  bookList = bookList
+    .filter((el) => {
+      if (el.price < sortPrice || !sortPrice) {
+        return el;
+      }
+    })
+    .sort((a, b) => {
+      if (sort == "low") {
+        return a.price - b.price;
+      } else if (sort == "high") {
+        return b.price - a.price;
+      } else {
+        return 0;
+      }
+    });
 
   useEffect(() => {
     dispatch(getBooksfun(sortbyTime, 1));
+    handleChange();
     const userDetails = localStorage.getItem("user");
     userInfo = JSON.parse(userDetails);
     if (userDetails) {
@@ -105,7 +104,7 @@ export const Books = () => {
         setShow(true);
       }
     }
-  }, [addBook, sortPrice, sort, sortbyTime, books]);
+  }, [addBook, sortPrice, books]);
 
   return (
     <Box m={"auto"} mt={10} w={{ base: "95%", md: "90%" }}>

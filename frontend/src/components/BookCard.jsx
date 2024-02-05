@@ -9,8 +9,6 @@ export const BookCard = ({ props, index, deleteBtn, handleDelete }) => {
     handleDelete(id);
   };
 
-  console.log(deleteBtn);
-
   const timeDate = new Date(book.createdAt).toLocaleString();
 
   return (

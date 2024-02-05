@@ -45,11 +45,9 @@ export const Signup = () => {
 
     dispatch(userRegisterfun(user))
       .then((res) => {
-        console.log(res);
         const status = res.data.msg;
       })
       .catch((err) => {
-        console.log(err);
         // const status = err.data.name;
       });
   };

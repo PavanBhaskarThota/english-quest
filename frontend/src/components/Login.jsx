@@ -74,11 +74,10 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
     // handleToast();
     dispatch(userLoginfun(user)).then((res) => {
       let status = res.data.msg;
-      // console.log(res);
+
 
       if (status == "Login Successfull") {
         {
