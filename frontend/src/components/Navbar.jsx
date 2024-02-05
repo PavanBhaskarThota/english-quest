@@ -36,7 +36,7 @@ export const Navbar = () => {
       gap={2}
     >
       <Heading
-        size={{ base: "xm", ml: "xl" }}
+        size={{ base: "xm", md: "xl" }}
         ml={{ base: 2, md: 20 }}
         cursor={"pointer"}
       >

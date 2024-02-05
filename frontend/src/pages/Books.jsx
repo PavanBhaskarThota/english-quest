@@ -75,7 +75,7 @@ export const Books = () => {
   };
 
   let bookList = [...books];
-  const handleChange = () => {
+ 
     bookList = bookList
       .filter((el) => {
         if (el.price < sortPrice || !sortPrice) {
@@ -91,11 +91,10 @@ export const Books = () => {
           return 0;
         }
       });
-  };
+  
 
   useEffect(() => {
     dispatch(getBooksfun(sortbyTime, 1));
-    handleChange();
     const userDetails = localStorage.getItem("user");
     userInfo = JSON.parse(userDetails);
     if (userDetails) {

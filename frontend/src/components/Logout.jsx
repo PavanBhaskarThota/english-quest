@@ -25,12 +25,12 @@ export const Logout = ({ props, handleLogout }) => {
           <Box display={"flex"} alignItems={"center"} gap={1}>
             <Heading
               colorScheme="blue"
-              size={{ base: "xm", md: "lg" }}
+              size={{ base: "xs", md: "lg" }}
               cursor={"pointer"}
             >
               Hi, {props.name}
             </Heading>
-            <Icon as={CgProfile} />
+            <Icon as={CgProfile} fontSize={{ base: "20px", md: "30px" }} />
           </Box>
         </PopoverTrigger>
         <Portal>
