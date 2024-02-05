@@ -14,7 +14,6 @@ export const getBooksfun = (data, value) => (dispatch) => {
   axios
     .get(`https://english-quest-go3m.onrender.com/books?${data}=${value}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: BOOKS_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -35,7 +34,7 @@ export const addBooksfun = (book) => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       dispatch({ type: BOOKS_ADD_SUCCESS, payload: res.data });
-      return res
+      return res;
     })
     .catch((err) => {
       dispatch({ type: BOOKS_ADD_FAILURE, payload: err });

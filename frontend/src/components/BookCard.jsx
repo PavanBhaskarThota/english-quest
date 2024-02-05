@@ -1,7 +1,7 @@
 import { Button, Td, Tr, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 
-export const BookCard = ({ props, index, deletebtn, handleDelete }) => {
+export const BookCard = ({ props, index, deleteBtn, handleDelete }) => {
   const book = props;
 
   const deleteButton = () => {
@@ -9,7 +9,9 @@ export const BookCard = ({ props, index, deletebtn, handleDelete }) => {
     handleDelete(id);
   };
 
-  const timeDate = new Date(book.createdAt).toLocaleString()
+  console.log(deleteBtn);
+
+  const timeDate = new Date(book.createdAt).toLocaleString();
 
   return (
     <Tr>
@@ -20,7 +22,7 @@ export const BookCard = ({ props, index, deletebtn, handleDelete }) => {
       <Td>{book.username}</Td>
       <Td>{timeDate}</Td>
 
-      {deletebtn && (
+      {deleteBtn && (
         <Td>
           <Button
             disabled={true}

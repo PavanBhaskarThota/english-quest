@@ -32,6 +32,8 @@ export const Books = () => {
   const [addBook, setAddbook] = useState(false);
   const toast = useToast();
 
+  console.log(addBtn);
+
   const [sortbyTime, setSortByTime] = useState("");
 
   //sort
@@ -53,10 +55,7 @@ export const Books = () => {
       }
     });
     setAddbook(!addBook);
-    console.log(addBook, "addbook");
   };
-  // console.log(addBook, "addbook out");
-  // console.log(addBook, "addbook out");
 
   const handleDelete = (id) => {
     dispatch(deleteBookfun(id)).then((res) => {
@@ -75,33 +74,28 @@ export const Books = () => {
     setAddbook(!addBook);
   };
 
-  const handleChange = () => {};
-
   let bookList = [...books];
-
-  bookList = bookList
-    .filter((el) => {
-      if (el.price < sortPrice || !sortPrice) {
-        return el;
-      }
-    })
-    .sort((a, b) => {
-      if (sort == "low") {
-        return a.price - b.price;
-      } else if (sort == "high") {
-        return b.price - a.price;
-      } else {
-        return 0;
-      }
-    });
-
-  console.log(sortbyTime);
-
-  // console.log(books);
+  const handleChange = () => {
+    bookList = bookList
+      .filter((el) => {
+        if (el.price < sortPrice || !sortPrice) {
+          return el;
+        }
+      })
+      .sort((a, b) => {
+        if (sort == "low") {
+          return a.price - b.price;
+        } else if (sort == "high") {
+          return b.price - a.price;
+        } else {
+          return 0;
+        }
+      });
+  };
 
   useEffect(() => {
     dispatch(getBooksfun(sortbyTime, 1));
-
+    handleChange();
     const userDetails = localStorage.getItem("user");
     userInfo = JSON.parse(userDetails);
     if (userDetails) {
@@ -112,7 +106,7 @@ export const Books = () => {
         setShow(true);
       }
     }
-  }, [addBook, sortPrice, sort, sortbyTime]);
+  }, [addBook, sortPrice, sort, sortbyTime, books]);
 
   return (
     <Box m={"auto"} mt={10} w={"90%"}>
@@ -129,6 +123,7 @@ export const Books = () => {
       )}
 
       {addBtn && <AddBook handleAddBook={handleAddBook} />}
+
       <Heading size={"lg"} mt={10}>
         Books in Table Format
       </Heading>
@@ -224,7 +219,7 @@ export const Books = () => {
                       <BookCard
                         key={i}
                         props={el}
-                        deleteBtn={false}
+                        deleteBtn={addBtn}
                         index={i}
                         handleDelete={handleDelete}
                       />
