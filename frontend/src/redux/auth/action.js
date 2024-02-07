@@ -12,7 +12,7 @@ import {
 export const userRegisterfun = (user) => (dispatch) => {
   dispatch({ type: SIGNUP_REQUEST });
   return axios
-    .post(`http://localhost:7000/register`, user)
+    .post(`https://english-quest-go3m.onrender.com/register`, user)
     .then((res) => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       return res;

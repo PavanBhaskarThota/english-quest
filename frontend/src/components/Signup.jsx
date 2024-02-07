@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { userRegisterfun } from "../redux/auth/action";
+import { Loading } from "./Loading";
 
 export const Signup = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,6 @@ export const Signup = () => {
     shallowEqual
   );
 
-  if (isSignup) {
-    navigate("/login");
-  }
   const [user, setuser] = useState({
     name: "",
     email: "",
@@ -40,12 +38,19 @@ export const Signup = () => {
     }));
   };
 
+  if (isLoading) {
+    return <Loading page={"70vh"} />;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(userRegisterfun(user))
       .then((res) => {
         const status = res.data.msg;
+        if (status == "new user has add") {
+          navigate("/login");
+        }
       })
       .catch((err) => {
         // const status = err.data.name;

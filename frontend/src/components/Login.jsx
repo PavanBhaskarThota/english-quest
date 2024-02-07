@@ -11,58 +11,20 @@ import React, { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { resetAuth, userLoginfun } from "../redux/auth/action";
+import { Loading } from "./Loading";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userData, token, isAuth, status } = useSelector(
-    (store) => store.authReducer,
-    shallowEqual
-  );
-
   const toast = useToast();
-
-  const handleToast = () => {
-    if (status == "Login Successfull") {
-      {
-        toast({
-          title: "Login Successfull",
-          description: "user has logged in successfully",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-      navigate("/books");
-    } else if (
-      status == "User dose not exist with this email please Register!"
-    ) {
-      {
-        toast({
-          title: "Please Register",
-          description: "User dose not exist with this email please Register!",
-          status: "warning",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-    } else if (status == "Wrong Password or Credentials!") {
-      {
-        toast({
-          title: "Please check the details",
-          description: "Wrong Password or Credentials!",
-          status: "warning",
-          duration: 2000,
-          isClosable: true,
-        });
-      }
-    }
-  };
-
   const [user, setuser] = useState({
     email: "",
     password: "",
   });
+  const { userData, token, isAuth, status, isLoading } = useSelector(
+    (store) => store.authReducer,
+    shallowEqual
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,12 +34,14 @@ export const Login = () => {
     }));
   };
 
+  if (isLoading) {
+    return <Loading page={"70vh"} />;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handleToast();
     dispatch(userLoginfun(user)).then((res) => {
       let status = res.data.msg;
-
 
       if (status == "Login Successfull") {
         {

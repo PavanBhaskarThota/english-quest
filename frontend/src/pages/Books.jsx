@@ -22,10 +22,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { BookCard } from "../components/BookCard";
+import { Loading } from "../components/Loading";
 
 export const Books = () => {
   const dispatch = useDispatch();
-  const { books } = useSelector((store) => store.bookReducer, shallowEqual);
+  const { books, isLoading } = useSelector(
+    (store) => store.bookReducer,
+    shallowEqual
+  );
   const [addBtn, setAddbtn] = useState(false);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState({});
@@ -37,6 +41,9 @@ export const Books = () => {
   //sort
   const [sortPrice, setPrice] = useState(Infinity);
   const [sort, setPriceSort] = useState("");
+
+  console.log(isLoading, "load");
+
   let userInfo;
 
   const handleAddBook = (book) => {
@@ -104,7 +111,7 @@ export const Books = () => {
         setShow(true);
       }
     }
-  }, [addBook, sortPrice, books]);
+  }, [addBook, sortbyTime]);
 
   return (
     <Box m={"auto"} mt={10} w={{ base: "95%", md: "90%" }}>
@@ -192,47 +199,52 @@ export const Books = () => {
           </RadioGroup>
         </Box>
         <Divider />
-        <TableContainer>
-          <Table variant="simple">
-            <TableCaption>Total Books - {bookList.length}</TableCaption>
-            <Thead>
-              <Tr>
-                <Th>N0.</Th>
-                <Th>Title</Th>
-                <Th>Description</Th>
-                <Th>Price</Th>
-                <Th>Created By</Th>
-                <Th>Created At</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {bookList.length > 0 &&
-                bookList.map((el, i) => {
-                  if (user._id === el.userId) {
-                    return (
-                      <BookCard
-                        key={i}
-                        props={el}
-                        deleteBtn={addBtn}
-                        index={i}
-                        handleDelete={handleDelete}
-                      />
-                    );
-                  } else {
-                    return (
-                      <BookCard
-                        key={i}
-                        props={el}
-                        deleteBtn={addBtn}
-                        index={i}
-                        handleDelete={handleDelete}
-                      />
-                    );
-                  }
-                })}
-            </Tbody>
-          </Table>
-        </TableContainer>
+
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <TableContainer>
+            <Table variant="simple">
+              <TableCaption>Total Books - {bookList.length}</TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>N0.</Th>
+                  <Th>Title</Th>
+                  <Th>Description</Th>
+                  <Th>Price</Th>
+                  <Th>Created By</Th>
+                  <Th>Created At</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {bookList.length > 0 &&
+                  bookList.map((el, i) => {
+                    if (user._id === el.userId) {
+                      return (
+                        <BookCard
+                          key={i}
+                          props={el}
+                          deleteBtn={addBtn}
+                          index={i}
+                          handleDelete={handleDelete}
+                        />
+                      );
+                    } else {
+                      return (
+                        <BookCard
+                          key={i}
+                          props={el}
+                          deleteBtn={addBtn}
+                          index={i}
+                          handleDelete={handleDelete}
+                        />
+                      );
+                    }
+                  })}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        )}
       </Box>
     </Box>
   );
