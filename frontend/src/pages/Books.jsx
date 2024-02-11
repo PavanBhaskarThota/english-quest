@@ -34,6 +34,7 @@ export const Books = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState({});
   const [addBook, setAddbook] = useState(false);
+  const [deleteBook, setDeleteBook] = useState(false);
   const toast = useToast();
 
   const [sortbyTime, setSortByTime] = useState("");
@@ -42,44 +43,51 @@ export const Books = () => {
   const [sortPrice, setPrice] = useState(Infinity);
   const [sort, setPriceSort] = useState("");
 
-  console.log(isLoading, "load");
-
   let userInfo;
 
   const handleAddBook = (book) => {
+    setAddbook(true);
     dispatch(addBooksfun(book)).then((res) => {
-      let status = res.data.msg;
-      {
-        toast({
-          title: "New Book Added",
-          description: "Book added successfully",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
+      let status = res.data.status;
+
+      console.log(status);
+      if (status == "Book Added") {
+        {
+          toast({
+            title: "New Book Added",
+            description: "Book added successfully",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
       }
     });
-    setAddbook(!addBook);
   };
 
   const handleDelete = (id) => {
+    setDeleteBook(true);
     dispatch(deleteBookfun(id)).then((res) => {
-      {
-        toast({
-          title: "Delete Successfull",
-          description: "Book is Deleted",
-          status: "warning",
-          duration: 3000,
-          isClosable: true,
-        });
+      let status = res.status;
+      console.log(status, res);
+      if (status == "Book Deleted") {
+        {
+          toast({
+            title: "Delete Successfull",
+            description: "Book is Deleted",
+            status: "warning",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
       }
     });
-
-    setAddbook(!addBook);
   };
+
   let bookList = [...books];
-  const handleChange = () => {
-    bookList = [...books];
+  const handleChange = (book) => {
+    console.log(book);
+    bookList = [...book];
   };
 
   bookList = bookList
@@ -99,8 +107,12 @@ export const Books = () => {
     });
 
   useEffect(() => {
-    dispatch(getBooksfun(sortbyTime, 1));
-    handleChange();
+    dispatch(getBooksfun(sortbyTime, 1)).then((res) => {
+      handleChange(res);
+    });
+    setAddbook(false);
+    setDeleteBook(false);
+
     const userDetails = localStorage.getItem("user");
     userInfo = JSON.parse(userDetails);
     if (userDetails) {
@@ -111,7 +123,7 @@ export const Books = () => {
         setShow(true);
       }
     }
-  }, [addBook, sortbyTime]);
+  }, [addBook, deleteBook, sortbyTime]);
 
   return (
     <Box m={"auto"} mt={10} w={{ base: "95%", md: "90%" }}>

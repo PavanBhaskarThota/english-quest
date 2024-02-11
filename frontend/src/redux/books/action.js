@@ -11,10 +11,11 @@ import {
 
 export const getBooksfun = (data, value) => (dispatch) => {
   dispatch({ type: BOOKS_REQUEST });
-  axios
+  return axios
     .get(`https://english-quest-go3m.onrender.com/books?${data}=${value}`)
     .then((res) => {
       dispatch({ type: BOOKS_SUCCESS, payload: res.data });
+      return res.data.book;
     })
     .catch((err) => {
       dispatch({ type: BOOKS_FAILURE, payload: err });
@@ -52,6 +53,7 @@ export const deleteBookfun = (id) => (dispatch) => {
     })
     .then((res) => {
       dispatch({ type: BOOKS_DELETE, payload: res.data });
+      return res.data;
     })
     .catch((err) => {
       dispatch({ type: BOOKS_ADD_FAILURE, payload: err });
