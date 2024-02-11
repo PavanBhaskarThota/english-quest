@@ -111,7 +111,7 @@ export const Signup = () => {
                 name="role"
                 onChange={(e) => handleChange(e)}
               >
-                Viewer
+                User
               </Radio>
               <Radio
                 value="creater"
