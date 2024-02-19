@@ -9,11 +9,11 @@ export const Navbar = () => {
   // const { isAuth } = useSelector((store) => store.authReducer, shallowEqual);
   const navigate = useNavigate();
   const toast = useToast();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(resetAuth);
-    localStorage.clear();
+    sessionStorage.clear();
     navigate("/");
 
     {

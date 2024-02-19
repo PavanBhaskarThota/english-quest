@@ -113,7 +113,7 @@ export const Books = () => {
     setAddbook(false);
     setDeleteBook(false);
 
-    const userDetails = localStorage.getItem("user");
+    const userDetails = sessionStorage.getItem("user");
     userInfo = JSON.parse(userDetails);
     if (userDetails) {
       setUser(userInfo);

@@ -29,8 +29,8 @@ export const userLoginfun = (user) => (dispatch) => {
     .post(`https://english-quest-go3m.onrender.com/login`, user)
     .then((res) => {
       if (res.data.msg == "Login Successfull") {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        sessionStorage.setItem("token", JSON.stringify(res.data.token));
+        sessionStorage.setItem("user", JSON.stringify(res.data.user));
       }
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       return res;

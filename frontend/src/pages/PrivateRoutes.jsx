@@ -5,7 +5,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 export const PrivateRoutes = ({ children }) => {
   const location = useLocation();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const toast = useToast();
 
   return user ? (

@@ -24,7 +24,7 @@ export const getBooksfun = (data, value) => (dispatch) => {
 
 export const addBooksfun = (book) => (dispatch) => {
   dispatch({ type: BOOKS_REQUEST });
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   return axios
     .post(`https://english-quest-go3m.onrender.com/books`, book, {
@@ -43,7 +43,7 @@ export const addBooksfun = (book) => (dispatch) => {
 
 export const deleteBookfun = (id) => (dispatch) => {
   dispatch({ type: BOOKS_REQUEST });
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   return axios
     .delete(`https://english-quest-go3m.onrender.com/books/delete/${id}`, {

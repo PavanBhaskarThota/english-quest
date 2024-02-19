@@ -7,7 +7,6 @@ const auth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.tokenKey, (err, decoded) => {
       console.log(token);
-      // console.log(decoded);
       if (decoded.user.role == "creater") {
         req.body.userId = decoded.user._id;
         req.body.username = decoded.user.name;

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { UserModel } = require("../models/user.model");
 
+
 const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
@@ -20,15 +21,14 @@ userRouter.post("/register", async (req, res) => {
       res.status(200).send({ msg: "new user has add", user: user });
     });
   } catch (error) {
-    
-    if (error.name === "ValidationError") {
-      return res.status(400).send({ msg: "Validation Error", error });
-    }
-    return res.status(400).send({ msg: "Internal Server Error", error });
-
-    // res.status(400).send({ err: error });
+    // if (error.name === "ValidationError") {
+    //   return res.status(400).send({ msg: "Validation Error", error });
+    // }
+    // res.status(400).send({ msg: "Internal Server Error", error });
+    res.status(400).send({ err: error });
   }
 });
+
 
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
