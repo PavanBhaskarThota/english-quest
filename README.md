@@ -70,21 +70,21 @@ English Quest is designed to be responsive across various screen sizes and devic
 
 Key functionalities of English Quest include:
 
-- ## 1. User Signup and Login:
+- # 1. User Signup and Login:
   Users can create an account and securely log in.
-- ## 2. Private Routes:
+- # 2. Private Routes:
   Access to the books library is restricted, and only logged-in users can access it (private routes implemented in React).
-- ## 3. Password Hashing:
+- # 3. Password Hashing:
   User passwords are securely hashed using bcrypt during signup for enhanced security.
-- ## 4. JWT Authorization:
+- # 4. JWT Authorization:
   Upon successful login, a JSON Web Token (JWT) is generated for user authorization.
-- ## 5. User Roles:
+- # 5. User Roles:
   During signup, users can choose their role as either a viewer or a creator.
-- ## 6. Creator Features:
+- # 6. Creator Features:
   Users with the creator role have additional privileges, such as creating and deleting books.
-- ## 7. Viewer Features:
+- # 7. Viewer Features:
   Users with the viewer role can only see books created by creators. They do not have access to book creation or deletion.
-- ## 8. User Profile:
+- # 8. User Profile:
   After logging in, users can view their profile details and logout through the navbar.
 
 ## Fonts
