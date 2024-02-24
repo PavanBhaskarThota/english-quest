@@ -2,7 +2,6 @@
 
 English Quest is a web application designed to facilitate exploration and interaction with a library of English books. Users can sign up, log in, and access different features based on their role. The project is built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
-![English Quest](english-quest.png)
 
 ## Table of Contents
 
