@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { UserModel } = require("../models/user.model");
 
-
 const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
@@ -28,7 +27,6 @@ userRouter.post("/register", async (req, res) => {
     res.status(400).send({ err: error });
   }
 });
-
 
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;

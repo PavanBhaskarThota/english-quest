@@ -85,6 +85,7 @@ export const Books = () => {
   };
 
   let bookList = [...books];
+
   const handleChange = (book) => {
     console.log(book);
     bookList = [...book];
